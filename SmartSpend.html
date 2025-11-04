@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartSpend - Student Financial Management</title>
+    <link rel="stylesheet" href="/CSS/SmartSpend.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💰 SmartSpend</h1>
+            <p>Student Financial Management System</p>
+            <div class="subtitle">CIT234 - Data Structures & Algorithms Project</div>
+        </div>
+
+        <!-- Setup Screen -->
+        <div id="setupScreen" class="card setup-card">
+            <h2>Welcome to SmartSpend</h2>
+            <p>Let's get started by setting your daily allowance</p>
+            <div class="input-group">
+                <label>Daily Allowance ($)</label>
+                <input type="number" id="allowanceInput" placeholder="20.00" step="0.01" min="0">
+            </div>
+            <button onclick="startApp()">Start Tracking</button>
+        </div>
+
+        <!-- Main App -->
+        <div id="mainApp" class="hidden">
+            <!-- Stats Dashboard -->
+            <div class="stats-grid">
+                <div class="stat-box income-box">
+                    <h3>Total Income</h3>
+                    <div class="amount" id="totalIncome">$0.00</div>
+                </div>
+                <div class="stat-box expense-box">
+                    <h3>Total Expenses</h3>
+                    <div class="amount" id="totalExpenses">$0.00</div>
+                </div>
+                <div class="stat-box balance-box">
+                    <h3>Balance</h3>
+                    <div class="amount" id="balance">$0.00</div>
+                </div>
+                <div class="stat-box savings-box">
+                    <h3>Savings</h3>
+                    <div class="amount" id="totalSavings">$0.00</div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="card">
+                <h2>Quick Actions</h2>
+                <div class="action-buttons">
+                    <button class="btn-expense" onclick="openModal('expense')">➖ Add Expense</button>
+                    <button class="btn-income" onclick="openModal('income')">➕ Add Income</button>
+                    <button class="btn-savings" onclick="openModal('savings')">💵 Add to Savings</button>
+                    <button class="btn-projection" onclick="showProjection()">📊 View Projection</button>
+                    <button class="btn-reset" onclick="resetAllData()">🔄 Reset Data</button>
+                    <button class="btn-export" onclick="exportData()">📥 Export Data</button>
+                </div>
+            </div>
+
+            <!-- Projection Card -->
+            <div id="projectionCard" class="card projection-card hidden">
+                <h2>📊 Projected Savings Analysis</h2>
+                <div class="projection-content">
+                    <div class="projection-detail">
+                        <span>Daily Allowance:</span>
+                        <span class="value" id="projAllowance">$0.00</span>
+                    </div>
+                    <div class="projection-detail">
+                        <span>Average Daily Spending:</span>
+                        <span class="value" id="projAvgSpending">$0.00</span>
+                    </div>
+                    <div class="projection-detail">
+                        <span>Days Remaining (Month):</span>
+                        <span class="value" id="projDaysLeft">30</span>
+                    </div>
+                    <div class="projection-detail highlight">
+                        <span>Projected Monthly Savings:</span>
+                        <span class="value" id="projSavings">$0.00</span>
+                    </div>
+                    <div class="projection-detail total">
+                        <span>Potential Total:</span>
+                        <span class="value" id="projTotal">$0.00</span>
+                    </div>
+                </div>
+                <button onclick="hideProjection()">Close</button>
+            </div>
+
+            <!-- Transactions List -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>Recent Transactions</h2>
+                    <button class="btn-small" onclick="clearTransactions()">Clear All</button>
+                </div>
+                <div id="transactionsList" class="transactions">
+                    <div class="empty-state">
+                        <p>📝 No transactions yet</p>
+                        <p class="small">Add your first expense or income to get started!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Savings Queue -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>Savings Queue (FIFO)</h2>
+                    <button class="btn-small" onclick="clearSavings()">Clear All</button>
+                </div>
+                <div id="savingsList" class="savings-list">
+                    <div class="empty-state">
+                        <p>💰 No savings yet</p>
+                        <p class="small">Start saving today!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <h2 id="modalTitle">Add Transaction</h2>
+                <div class="input-group">
+                    <label id="modalDescLabel">Description</label>
+                    <input type="text" id="modalDesc" placeholder="e.g., Lunch">
+                </div>
+                <div class="input-group">
+                    <label>Amount ($)</label>
+                    <input type="number" id="modalAmount" placeholder="0.00" step="0.01" min="0">
+                </div>
+                <div class="modal-buttons">
+                    <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+                    <button onclick="submitTransaction()">Add</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>Developers: Garyson Walker, Destiny</p>
+            <p>Lecturer: Christopher Mignon</p>
+        </div>
+    </div>
+
+    <script src="/JS/SmartSpend.js"></script>
+</body>
+</html>
