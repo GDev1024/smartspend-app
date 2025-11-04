@@ -1,9 +1,8 @@
 title: SmartSpend
-title: SmartSpend
 email: ""
 description: "Personal finance and budgeting site for SmartSpend"
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site
+baseurl: "/smartspend-app" # the subpath of your site
+url: "https://GDev1024.github.io" # the base hostname & protocol for your site
 theme: minima
 plugins:
   - jekyll-feed
